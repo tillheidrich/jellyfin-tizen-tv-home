@@ -42,17 +42,21 @@ Plus:
 
 ## How it compares
 
-This is **not** a replacement for the excellent CSS themes. It's the TV/remote layer they can't provide. Combine them if you like.
+Honest version: **full TV clients such as [Moonfin](https://github.com/Moonfin-Client/Smart-TV) do more overall.** They have their own player, Live TV, Seerr and libass subtitles. **[Jellyfin-Enhanced](https://github.com/n00bcodr/Jellyfin-Enhanced)** adds far more browser features: shortcuts, reviews, requests and subtitle presets. This repo does something none of them do: it makes the **official** Jellyfin app on a Samsung TV feel good with the remote, without replacing the app and without leaving the Jellyfin web stack.
 
-| | CSS themes ([Apollo](https://github.com/DPilat-Dev/Apollo), [Cinema](https://github.com/gauthier-se/jellyfin-theme-cinema), [Netflin](https://github.com/ahza-code/Netflin), …) | Alternative TV clients ([Moonfin](https://github.com/Moonfin-Client/Smart-TV), [Litefin](https://github.com/MoazSalem/litefin/)) | **This repo** |
-|---|:---:|:---:|:---:|
-| New look in the browser | ✅ | – | ✅ |
-| Works inside the **official** Jellyfin Tizen app | ✅ (CSS only) | ❌ (separate app) | ✅ |
-| Home screen built for remote navigation | ❌ | ✅ | ✅ |
-| OK shows the bar instead of pausing | ❌ | depends | ✅ |
-| Subtitle size and style on the TV, with live preview | ❌ | depends | ✅ |
-| Fixes for Tizen purple tint, ghost images and clipped header | ❌ | n/a | ✅ |
-| Update without reinstalling the TV app | ✅ | ❌ | ✅ (scripts load from your server) |
+| | CSS themes ([Apollo](https://github.com/DPilat-Dev/Apollo), [Cinema](https://github.com/gauthier-se/jellyfin-theme-cinema), [Netflin](https://github.com/ahza-code/Netflin)) | [Jellyfin-Enhanced](https://github.com/n00bcodr/Jellyfin-Enhanced) | Separate TV clients ([Moonfin](https://github.com/Moonfin-Client/Smart-TV), [Litefin](https://github.com/MoazSalem/litefin/)) | **This repo** |
+|---|:---:|:---:|:---:|:---:|
+| Stays the **official** Jellyfin app (all server features, same updates) | ✅ | ✅ | ❌ own app | ✅ |
+| Runs inside the official **Samsung Tizen** app | CSS only | ❌ not without a patch | – | ✅ via `patch-wgt.py` |
+| Home screen built for **remote navigation** (fixed layout, no overlap, lazy images) | ❌ | ❌ | ✅ | ✅ |
+| Dynamic rows from your **own watch history** + match score | ❌ | ❌ | partly | ✅ |
+| **OK shows the player bar** instead of pausing | ❌ | ❌ | ? | ✅ |
+| Subtitle size/style **on the TV with live preview** | ❌ | browser panel | ✅ | ✅ |
+| Fixes for Tizen purple tint, ghost images, clipped header | ❌ | ❌ | n/a | ✅ |
+| Change once on the server, every TV updates — **no reinstall** | ✅ | ✅ | ❌ | ✅ |
+| Lets **other** JavaScript Injector scripts run on the Samsung TV too | – | – | – | ✅ |
+
+The last row is a nice side effect: once the TV app loads your server's public script bundle, other public JavaScript Injector scripts run on the TV as well.
 
 ## Install
 
