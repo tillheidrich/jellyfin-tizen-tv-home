@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Optional Tizen intro (≈3.7 s) with an original sound. patch-wgt.py --wordmark sets the text; you can also swap the <div id="word"> for an <img>. MIT License. -->
+<html><head><meta charset="utf-8"><title>Intro</title>
+<meta name="viewport" content="width=1920,height=1080">
+<style>
+
+html,body{margin:0;width:100%;height:100%;background:#000;overflow:hidden;cursor:none}
+#stage{position:absolute;top:0;left:0;width:100%;height:100%;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center}
+#glow{position:absolute;left:50%;top:50%;margin:-23.44vw 0 0 -23.44vw;width:46.88vw;height:46.88vw;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,.55) 0%,rgba(229,9,20,.12) 40%,rgba(0,0,0,0) 70%);opacity:0;transform:scale(.4);animation:glow 3.4s ease-out forwards}
+#word{position:absolute;left:0;right:0;top:50%;margin-top:-6vw;height:12vw;text-align:center;font:900 9vw/12vw "Arial Black","Helvetica Neue",Arial,sans-serif;letter-spacing:.04em;color:#e50914;opacity:0;letter-spacing:0;animation:word 3.4s ease-out forwards}
+#sweep{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);transform:translateX(-120%);animation:sweep 1s 1.6s ease-in-out forwards}
+#fade{position:absolute;top:0;left:0;right:0;bottom:0;background:#000;opacity:0;animation:fade .45s 3.25s ease-in forwards}
+@keyframes glow{0%{opacity:0;transform:scale(.4)}35%{opacity:1;transform:scale(1)}100%{opacity:.35;transform:scale(1.8)}}
+@keyframes word{0%,10%{opacity:0;transform:scale(.82);filter:blur(8px)}40%{opacity:1;transform:scale(1);filter:blur(0)}92%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:scale(1.06)}}
+@keyframes sweep{to{transform:translateX(120%)}}
+@keyframes fade{to{opacity:1}}
+
+</style></head>
+<body><div id="stage">
+<div id="glow"></div>
+<div id="word">WORDMARK</div>
+<div id="sweep"></div><div id="fade"></div>
+<audio id="snd" src="intro.mp3" preload="auto"></audio>
+</div>
+<script>
+(function(){
+  var go=function(){ location.replace('www/index.html'); };
+  var skip=false;
+  // Tizen sometimes relaunches the app within seconds (e.g. after "Back" on the exit dialog) – skip the intro then
+  try { if (localStorage.getItem('introLast') && Date.now()-parseInt(localStorage.getItem('introLast'),10) < 5000) skip=true; localStorage.setItem('introLast', String(Date.now())); } catch(e) {}
+  if(!skip){ try { var a=document.getElementById('snd'); a.volume=0.8; var p=a.play(); if(p&&p.catch) p.catch(function(){}); } catch(e) {} }
+  document.addEventListener('keydown', go);
+  setTimeout(go, skip ? 0 : 3700);
+})();
+</script>
+</body></html>

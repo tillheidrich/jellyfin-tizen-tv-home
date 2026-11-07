@@ -1,0 +1,113 @@
+/* Jellyfin TV Home — Custom CSS (Dashboard → General → Branding → Custom CSS). Chromium 85 compatible (no :has needed for TV). MIT License. */
+
+/* ---- 1. Dark streaming look (optional) ---- */
+:root { --tvh-accent: #E50914; --tvh-bg: #141414; --tvh-text: #e5e5e5; }
+html, body, .backgroundContainer, .skinBody, .mainAnimatedPage { background-color: var(--tvh-bg) !important; }
+.backgroundContainer.withBackdrop { background-color: rgba(20,20,20,.88) !important; }
+.skinHeader { background: linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 60%, transparent 100%) !important; box-shadow: none !important; }
+.skinHeader.semiTransparent { backdrop-filter: none !important; }
+.sectionTitle, .sectionTitle-cards, .sectionTitleContainer h2 { color: var(--tvh-text) !important; font-weight: 700 !important; font-size: 1.3em !important; letter-spacing: .01em; }
+.cardBox { border-radius: 6px; transition: transform .22s ease, box-shadow .22s ease; }
+.cardScalable, .cardImageContainer, .cardContent { border-radius: 6px; }
+.card:hover .cardBox, .card:focus .cardBox, .card:focus-within .cardBox { transform: scale(1.06); box-shadow: 0 10px 28px rgba(0,0,0,.65); z-index: 3; position: relative; }
+.layout-tv .card:focus .cardBox { outline: 3px solid #fff; outline-offset: 2px; }
+.cardText { color: #bdbdbd; }
+.cardText-first { color: var(--tvh-text); font-weight: 600; }
+.button-submit, .emby-button.button-submit, .btnPlay.button-flat, .detailButton.btnPlay { background: var(--tvh-accent) !important; color: #fff !important; border-radius: 4px; }
+.emby-tab-button-active, .emby-tab-button.emby-button-foreground { color: #fff !important; }
+.emby-tab-button-active::after, .emby-tab-button-active { border-bottom-color: var(--tvh-accent) !important; }
+.itemProgressBarForeground, .playbackProgress .itemProgressBarForeground { background-color: var(--tvh-accent) !important; }
+.playedIndicator, .countIndicator, .indicator { background: var(--tvh-accent) !important; }
+.mdl-slider-background-lower, .sliderBubble { background: var(--tvh-accent) !important; }
+input[type=checkbox]:checked + span + .checkboxOutline, .emby-checkbox:checked + span + .checkboxOutline { background-color: var(--tvh-accent) !important; border-color: var(--tvh-accent) !important; }
+.itemName.infoText.parentNameLast, .detailPagePrimaryContainer .itemName { font-weight: 800 !important; letter-spacing: -.01em; }
+.mainDrawer, .navMenuOption-selected { background-color: #000 !important; }
+.navMenuOption-selected { border-left: 3px solid var(--tvh-accent); }
+a:not(.cardImageContainer):hover { color: #fff; }
+::-webkit-scrollbar-thumb { background: #3a3a3a; }
+
+.defaultCardBackground1 { background-color: #2a0a0c !important; } .defaultCardBackground2 { background-color: #3b0d10 !important; }
+.defaultCardBackground3 { background-color: #1f1f1f !important; } .defaultCardBackground4 { background-color: #4a1014 !important; }
+.defaultCardBackground5 { background-color: #2b2b2b !important; }
+.sectionTitle.sectionTitle-cards, h2.sectionTitle { color: var(--tvh-text) !important; font-weight: 700 !important; }
+
+
+/* ---- 2. TV fix: player background is only transparent while a video is actually playing (fixes purple tint + ghost images on Tizen) ---- */
+html.transparentDocument, html.transparentDocument body { background: transparent !important; background-color: transparent !important; }
+html.transparentDocument .backgroundContainer:not(.withBackdrop) { background: #141414 !important; background-color: #141414 !important; }
+.videoPlayerContainer ~ .backgroundContainer, .videoPlayerContainer ~ .backgroundContainer.withBackdrop, .videoPlayerContainer ~ .skinBody, .videoPlayerContainer ~ * .skinBody, .videoPlayerContainer ~ * .mainAnimatedPage, .videoPlayerContainer ~ .mainAnimatedPage, .videoPlayerContainer ~ * .page, .videoPlayerContainer ~ * #videoOsdPage { background: transparent !important; background-color: transparent !important; }
+html.transparentDocument .videoPlayerContainer ~ .backgroundContainer.backgroundContainer, html.transparentDocument .videoPlayerContainer ~ * .backgroundContainer.backgroundContainer, html.transparentDocument .videoPlayerContainer ~ * .skinBody.skinBody, html.transparentDocument .videoPlayerContainer ~ * .mainAnimatedPage.mainAnimatedPage, html.transparentDocument .videoPlayerContainer ~ * .page.page { background: transparent !important; background-color: transparent !important; }
+
+/* ---- 3. Rows, cards, focus states, dialogs ---- */
+/* Row titles */
+.sectionTitle, .sectionTitle-cards { font-weight: 700 !important; font-size: 1.45em !important; color: #f2f2f2 !important; letter-spacing: .01em; }
+.layout-tv .sectionTitle { font-size: 1.6em !important; }
+/* Cards: rounded corners, white focus ring, gentle scale-up */
+.cardScalable, .cardImageContainer, .cardContent, .cardOverlayContainer, .cardBox .cardPadder { border-radius: 10px !important; overflow: hidden; }
+.cardBox { transition: transform .22s cubic-bezier(.2,.8,.2,1) !important; border-radius: 12px; }
+.card:focus .cardBox, .card:hover .cardBox { transform: scale(1.06) !important; z-index: 3; }
+.card:focus .cardScalable, .layout-tv .card:focus .cardScalable { box-shadow: 0 0 0 3px #fff, 0 12px 28px rgba(0,0,0,.6) !important; }
+.card:hover .cardScalable { box-shadow: 0 0 0 2px rgba(255,255,255,.75), 0 10px 24px rgba(0,0,0,.55) !important; }
+.layout-tv .card:focus .cardBox { border: 0 !important; background: transparent !important; }
+.cardText { text-align: left !important; padding-left: .2em !important; }
+.cardText-first { font-weight: 600 !important; color: #f2f2f2 !important; }
+.cardText-secondary { color: rgba(255,255,255,.62) !important; }
+/* Progress bar: accent colour, flush at the bottom */
+.itemProgressBarForeground { background-color: #E50914 !important; }
+.itemProgressBar { background: rgba(255,255,255,.25) !important; height: .28em !important; }
+/* Top navigation (TV layout): centred pills */
+.layout-tv .headerTabs { display: flex !important; justify-content: center !important; }
+.layout-tv .emby-tab-button { border-radius: 999px !important; padding: .45em 1.3em !important; margin: 0 .25em !important; color: #e5e5e5 !important; font-weight: 600 !important; }
+.layout-tv .emby-tab-button-active { background: rgba(255,255,255,.16) !important; color: #fff !important; }
+.layout-tv .emby-tab-button:focus { background: #fff !important; color: #000 !important; transform: none !important; }
+.layout-tv .emby-tab-button:focus .emby-button-foreground { color: #000 !important; }
+.layout-tv .currentTimeText { display: none !important; }
+/* Browser header: menu items as pills */
+header .MuiButton-root { border-radius: 999px !important; padding-left: 1em !important; padding-right: 1em !important; text-transform: none !important; }
+header .MuiButton-root:hover, header .MuiButton-root:focus-visible { background: rgba(255,255,255,.14) !important; }
+/* Title banner (Media Bar plugin): streaming-style buttons */
+.slide .button-container { display: flex !important; align-items: center; }
+.slide .play-button { background: #fff !important; color: #000 !important; border-radius: 999px !important; padding: .55em 1.6em !important; font-weight: 700 !important; border: 0 !important; box-shadow: none !important; }
+.slide .play-button .play-text { font-size: 0 !important; }
+.slide .play-button .play-text::after { content: "Play"; font-size: 1.05rem; }
+.slide .play-button * { color: #000 !important; }
+.slide .detail-button { background: rgba(255,255,255,.22) !important; color: #fff !important; border-radius: 999px !important; padding: .55em 1.5em !important; font-weight: 700 !important; border: 0 !important; width: auto !important; margin-left: .7em !important; }
+.slide .detail-button .material-icons, .slide .detail-button .action-label { display: none !important; }
+.slide .detail-button::after { content: "More Info"; font-size: 1.05rem; }
+.slide .favorite-button { background: rgba(255,255,255,.22) !important; border-radius: 50% !important; border: 0 !important; margin-left: .7em !important; }
+.slide .play-button:focus, .slide .detail-button:focus, .slide .favorite-button:focus { box-shadow: 0 0 0 3px #fff, 0 0 0 6px rgba(255,255,255,.25) !important; transform: scale(1.05); }
+.slide .plot { font-size: 1.12rem !important; line-height: 1.45 !important; max-width: 46em; color: #f2f2f2 !important; }
+.slide .spec-rail, .slide .spec-line { font-weight: 600 !important; }
+/* Details page: Play in white, everything else as round buttons */
+.detailButton.btnPlay, .mainDetailButtons .btnPlay { background: #fff !important; color: #000 !important; border-radius: 999px !important; }
+.mainDetailButtons .detailButton { border-radius: 999px !important; }
+/* Dialogs (e.g. "Exit app?"): dark card, pill buttons side by side */
+.dialogContainer .dialog { background: #181818 !important; border-radius: 16px !important; box-shadow: 0 20px 60px rgba(0,0,0,.7) !important; border: 1px solid rgba(255,255,255,.08) !important; }
+.dialog .formDialogHeaderTitle, .dialog h1, .dialog h2 { font-weight: 700 !important; color: #fff !important; }
+.dialog .formDialogFooter { display: flex !important; flex-direction: row !important; justify-content: center !important; align-items: center !important; background: transparent !important; border: 0 !important; padding: 1em !important; position: static !important; }
+.dialog .formDialogFooterItem, .dialog .btnOption { flex: 0 0 auto !important; width: auto !important; min-width: 9em !important; margin: 0 .5em !important; border-radius: 999px !important; padding: .7em 2em !important; background: rgba(255,255,255,.16) !important; color: #fff !important; border: 0 !important; font-weight: 700 !important; text-align: center !important; transform: none !important; }
+.dialog .formDialogFooterItem:focus, .dialog .btnOption:focus, .dialog .formDialogFooterItem:hover, .dialog .btnOption:hover { background: #fff !important; color: #000 !important; }
+.dialog .formDialogFooterItem:focus *, .dialog .btnOption:focus * { color: #000 !important; }
+.dialog .button-submit { background: #E50914 !important; color: #fff !important; }
+.dialog .button-submit:focus { background: #fff !important; color: #000 !important; }
+.slide .detail-button > * { display: none !important; }
+.slide .detail-button { display: inline-flex !important; align-items: center; height: auto !important; }
+.layout-tv .emby-tab-button { font-size: 1.05em !important; background: rgba(0,0,0,.25); }
+.layout-tv .skinHeader { background: linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,0)) !important; }
+.slide .detail-button::before { display: none !important; content: none !important; }
+.slide .detail-button::after { font-family: inherit !important; }
+
+/* ---- 4. TV header: not clipped at the top edge, sensible margins (The Frame renders at 1920x1080) ---- */
+html.layout-tv .skinHeader .headerLeft { margin-left: 3vw !important; }
+html.layout-tv .skinHeader .headerRight { margin-right: 3vw !important; }
+html.layout-tv .backgroundContainer.withBackdrop { background-color: #141414 !important; }
+html.layout-tv .skinHeader { contain: none !important; height: auto !important; min-height: 0 !important; padding-top: 1.2vh !important; }
+html.layout-tv .skinHeader .headerLeft { overflow: visible !important; }
+
+/* ---- 5. TV player: clearly visible focus on seek bar and buttons ---- */
+html.layout-tv .videoOsdBottom .sliderContainer:focus-within .mdl-slider-background-lower { background: #e50914 !important; }
+html.layout-tv .videoOsdBottom .sliderContainer:focus-within .mdl-slider-background-flex, html.layout-tv .videoOsdBottom .sliderContainer:focus-within .mdl-slider-background-flex-inner { height: .55em !important; }
+html.layout-tv .videoOsdBottom .osdPositionSlider:focus::-webkit-slider-thumb { background: #e50914 !important; transform: scale(1.9) !important; box-shadow: 0 0 0 .35em rgba(229,9,20,.35) !important; }
+html.layout-tv .videoOsdBottom .sliderContainer:focus-within { background: rgba(229,9,20,.12); border-radius: .4em; }
+html.layout-tv .videoOsdBottom .sliderContainer:focus-within ~ *, html.layout-tv .videoOsdBottom .osdPositionText, html.layout-tv .videoOsdBottom .osdDurationText { color: #fff !important; }
+html.layout-tv .videoOsdBottom button:focus:not(.ffAaBtn):not(.ffSubMoved) { background: #fff !important; color: #000 !important; border-radius: 50% !important; transform: scale(1.18); }
